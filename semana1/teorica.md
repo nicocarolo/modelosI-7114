@@ -16,6 +16,8 @@
     > FLETE) 1DC + 1LV - 300 = EXCESO - FALTANTE
     
     _Validando con ejemplos_
+    
+    
     | 1DC + 1LV     | - | META   | = | EXCESO | - | FALTANTE |
     |:-------------:|:-:|:------:|:-:|:------:|:-:|:--------:|
     | 280           | - | 300    | = | 0      | - | 20       |
