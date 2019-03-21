@@ -1,0 +1,19 @@
+@startuml
+skinparam defaultTextAlignment center
+skinparam monochrome true
+
+:Plata - Cobre - Estaño;
+if (Centro1) then
+:Centro2;
+note left : //Pintura Dorada//
+:Medalla Dorada;
+else
+:Centro3;
+note right : //Pintura Plateada//
+:Medalla Plateada;
+endif
+:Arma bolsas;
+:Alfa - Beta;
+
+
+@enduml
