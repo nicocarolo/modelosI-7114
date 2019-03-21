@@ -50,29 +50,30 @@
 #### Modelo
 
 ##### Centro 1 (Mezcla)
-##### Relacion Entrada - Salida
-Para restringir que si entran X cantidad de recursos salen X cantidad de recursos.
-> Ag + Cu + Sn [<sup>Kg</sup>/<sub>semana</sub>] = 0,15 [<sup>Kg</sup>/<sub>medalla</sub>] (MC1C2+ MC1C3) [<sup>Medallas</sup>/<sub>semana</sub>]
+- ##### Relacion Entrada - Salida
+    Para restringir que si entran X cantidad de recursos salen X cantidad de recursos.
+    > Ag + Cu + Sn [<sup>Kg</sup>/<sub>semana</sub>] = 0,15 [<sup>Kg</sup>/<sub>medalla</sub>] (MC1C2+ MC1C3) [<sup>Medallas</sup>/<sub>semana</sub>]
 
-_Si no pongo el 0,15 estaria diciendo que cada medalla pesaria un kilo._<br>
-_Podria haber una merma como: La salida es el 90% de lo que entra._
+    _Si no pongo el 0,15 estaria diciendo que cada medalla pesaria un kilo._<br>
+    _Podria haber una merma como: La salida es el 90% de lo que entra._
 
-##### Disponibilidad de materia prima
-Para limitar cantidad de Plata, Cobre y Estaño a las constantes del enunciado (E, F, etc).
+- ##### Disponibilidad de materia prima
+    Para limitar cantidad de Plata, Cobre y Estaño a las constantes del enunciado (E, F, etc).
 
-##### Mezcla Entrada
-Para declarar forma de la composición
-- La aleacion debe contener al menos 90% de Plata (Probar con valores para probar las fórmulas ; Si tengo (Ag + Cu + Sn) = 100 => Cuanto deberia tener de Ag?).
-> 0,9 (Ag + Cu + Sn) <= Ag
-- La aleacion debe contener a lo sumo 0,5% de Estaño.
-> 0,05(Ag + Cu + Sn) => Sn
+- ##### Mezcla Entrada
+    Para declarar forma de la composición
+    - La aleacion debe contener al menos 90% de Plata (Probar con valores para probar las fórmulas ; Si tengo (Ag + Cu + Sn) = 100 => Cuanto deberia tener de Ag?).
+    > 0,9 (Ag + Cu + Sn) <= Ag
+    - La aleacion debe contener a lo sumo 0,5% de Estaño.
+    > 0,05(Ag + Cu + Sn) => Sn
 
-##### Capacidad productiva
-Para restricciones de productividad
-- Tengo 48 hs por semana que puede trabajar la maquina del Centro 1.
-> (Ag + Cu + Sn) <= 48 [<sup>Hs</sup>/<sub>semana</sub>] . A [<sup>Hs</sup>/<sub>semana</sub>] _//Chequear unidades en diapositiva_
+- ##### Capacidad productiva
+    Para restricciones de productividad
+    - Tengo 48 hs por semana que puede trabajar la maquina del Centro 1.
+    > (Ag + Cu + Sn) <= 48 [<sup>Hs</sup>/<sub>semana</sub>] . A [<sup>Hs</sup>/<sub>semana</sub>] _//Chequear unidades en diapositiva_
 
 ##### Centro 2
+_Completar con diapositiva_
 ##### Centro 3
 _Completar con diapositiva_
 
@@ -86,3 +87,4 @@ BETA <= T2 _// T2 constante de enunciado_
 
 ##### Funcional
 > Z<sub>max</sub> = $A1 ALFA + $T1 BETA - $P1 Ag - $P2 CU - ......
+_//Completar con diapositiva_
