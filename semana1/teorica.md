@@ -1,6 +1,14 @@
 # Teorica 20/3 
 ## Siguiendo con el ejemplo de las botellas de la clase pasada:
 
+>MAX 7 DC + 4 LV\
+BOTELLA) 1 DC + 1 LV <= 400\
+ETIQUETA) 1 DC + 1 LV <= 500\
+SUSTBASE) 0.2 DC + 0.1 LV <= 60\
+AROMAT) 0.04 DC + 0.25 LV <= 70\
+MINDC) DC >= 100\
+MINLV) LV >= 80\
+MAXLV) LV <= 280
 -   Que pasa si se rompe el flete de las botellas y ahora nos cobra $2 mas por cada botella y como maximo transporta 300 botellas
     -   Se agrega condicion:
     > FLETE) 1DC + 1LV <= 300
@@ -16,6 +24,7 @@
     > FLETE) 1DC + 1LV - 300 = EXCESO - FALTANTE
     
     _Validando con ejemplos_
+    
     | 1DC + 1LV     | - | META   | = | EXCESO | - | FALTANTE |
     |:-------------:|:-:|:------:|:-:|:------:|:-:|:--------:|
     | 280           | - | 300    | = | 0      | - | 20       |
@@ -29,6 +38,7 @@
 
 ## Ejercicio con proceso de producción
 ### Armado vs Mezcla
+![alt text](diagramas/problema.png "Enunciado")
 ![alt text](diagramas/armadovsmezcla.png "Armado vs Mezcla")
 
 #### Objetivo
@@ -73,9 +83,24 @@
     > (Ag + Cu + Sn) <= 48 [<sup>Hs</sup>/<sub>semana</sub>] . A [<sup>Hs</sup>/<sub>semana</sub>] _//Chequear unidades en diapositiva_
 
 ##### Centro 2
-_Completar con diapositiva_
+- ##### Relación Entrada/Salida (E/S):
+> MC1C2 = MD
+- ##### Uso de pintura:
+>PD [<sup>Ls</sup>/<sub>semana</sub>] = 0,01 [<sup>Ls</sup>/<sub>Medalla</sub>] MD [<sup>Medalla</sup>/<sub>Semana</sub>]
+- ##### Disponibilidad de Pintura dorada:
+>PD [<sup>Ls</sup>/<sub>semana</sub>] < G [<sup>Ls</sup>/<sub>semana</sub>]
+- ##### Capacidad productiva:
+>(MC1C2) [<sup>Medalla</sup>/<sub>Semana</sub>] < B [<sup>Medalla</sup>/<sub>Hs</sub>] 48 [<sup>Hs</sup>/<sub>Semana</sub>] 
+
 ##### Centro 3
-_Completar con diapositiva_
+- ##### Relación Entrada/Salida (E/S):
+>C1C3 = MP
+- ##### Uso de pintura:
+>PP [<sup>Ls</sup>/<sub>semana</sub>] = 0,02 [<sup>Ls</sup>/<sub>Medalla</sub>] MP [<sup>Medalla</sup>/<sub>Semana</sub>]
+- ##### Disponibilidad de Pintura plateada:
+>PP [<sup>Ls</sup>/<sub>semana</sub>] < H [<sup>Ls</sup>/<sub>semana</sub>]
+- ##### Capacidad productiva:
+>(MC1C3) [<sup>Medalla</sup>/<sub>Semana</sub>] < C (Medalla/H) 48 [<sup>Hs</sup>/<sub>Semana</sub>] 
 
 ##### Hacer las bolsas (Armado)
 > MD = 3 ALFA + 1 BETA _// Si ALFA = 2 y BETA = 1 => Necesito 7 MD_<br>
@@ -86,5 +111,4 @@ MP [<sup>Medallas</sup>/<sub>Semana</sub>] = 2 [<sup>Medallas</sup>/<sub>Bolsa</
 BETA <= T2 _// T2 constante de enunciado_
 
 ##### Funcional
-> Z<sub>max</sub> = $A1 ALFA + $T1 BETA - $P1 Ag - $P2 CU - ......
-_//Completar con diapositiva_
+> Z<sub>max</sub> = $A1 ALFA + $T1 BETA - $P1 Ag - $P2 Cu - $P3 Sn - $P4 PD - $P5 PP
