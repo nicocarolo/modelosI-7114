@@ -24,7 +24,7 @@ MaqC) 4 [<sup>Hs</sup>/<sub>Mes</sub>] X<sub>1</sub> + 2 [<sup>Hs</sup>/<sub>Mes
 
 > Funcional) Z<sub>Max</sub> = $60 X<sub>1</sub> + $50 X<sub>2</sub> 
 
-## Ejercicio 1.2
+## Ejercicio 1.3
 
 ![alt text](diagramas/ejUno3.png "1.3")
 
