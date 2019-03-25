@@ -6,3 +6,7 @@
 #### Semana 1
 - [Teorica](semana1/teorica.md)
 - [Practica](semana1/practica.md)
+
+#### Semana 2
+- [Teorica](semana2/teorica.md)
+- [Practica](semana2/practica.md)
