@@ -49,6 +49,8 @@ LN) 1.6 [<sup>Ks</sup>/<sub>Pullover</sub>] X<sub>A</sub> + 1.2 [<sup>Ks</sup>/<
 - Todo lo extraido sirve, no tiene defectos.
 - La calidad es igual sin importar el yacimiento.
 - Lo extraido de otros no sirve para nada.
+- B no tiene cobre.
+- A no tiene magnesio.
 
 ### Objetivo
 Determinar cuanto extraer de cada yacimiento y producir de A y B asi como su composicion para maximizar las ganancias en un tiempo determinado.
@@ -59,10 +61,8 @@ X<sub>B</sub>: Cantidad producida de la aleacion B.\
 SA: Cantidad extraida de Sierra Alta.\
 SC: Cantidad extraida de Sierra Chica.\
 EA: Cantidad extraida de El Abra.\
-E<sub>Cu</sub>: Cantidad extraida de cobre.\
-E<sub>Es</sub>: Cantidad extraida de estaño.\
-E<sub>Mg</sub>: Cantidad extraida de magneso.\
-E<sub>Z</sub>: Cantidad extraida de zinc.
+Cu<sub>A</sub>: Cobre en A. (Idem para Es, Mg y Z)\
+Cu<sub>B</sub>: Cobre en B. (Idem para Es, Mg y Z)
 
 ### Modelo
 
@@ -73,18 +73,22 @@ EA) EA <=  3000
 
 - ##### Composicion extraccion
 _Seria importante cambiar las igualdades por <= para no limitar al modelo y evitar incompatibilidades_
->Cu) E<sub>Cu</sub> =  0,20 SA + 0,10 SC + 0,05 EA\
-Es) E<sub>Es</sub> =  0,10 SA + 0,20 SC + 0,05 EA\
-Mg) E<sub>Mg</sub> =  0,30 SA + 0,30 SC + 0,70 EA\
-Z) E<sub>Z</sub> =  0,30 SA + 0,30 SC + 0,20 EA
+>Cu) Cu<sub>A</sub> =  0,20 SA + 0,10 SC + 0,05 EA\
+Es) Es<sub>A</sub> + Es<sub>B</sub> =  0,10 SA + 0,20 SC + 0,05 EA\
+Mg) Mg<sub>B</sub> =  0,30 SA + 0,30 SC + 0,70 EA\
+Z) Z<sub>A</sub> + Z<sub>B</sub> =  0,30 SA + 0,30 SC + 0,20 EA\
 
 - ##### Mezcla
-> Cu-A) X<sub>A</sub> <= 0,8 E<sub>Cu</sub>\
-Es-A) X<sub>A</sub> <= 0,3 E<sub>Es</sub>\
-Z-A) X<sub>A</sub> => 0,5 E<sub>Z</sub>\
-Es-B) 0,6 E<sub>Es</sub> => X<sub>B</sub> => 0,4 E<sub>Es</sub>\
-Mg-B) X<sub>B</sub> => 0,3 E<sub>Mg</sub>\
-Z-B) X<sub>B</sub> <= 0,7 E<sub>Z</sub>
+> A) X<sub>A</sub> = Cu<sub>A</sub> + Es<sub>A</sub> + Z<sub>A</sub>\
+B) X<sub>B/sub> = Mg<sub>B</sub> + Es<sub>B</sub> + Z<sub>B</sub>\
+Cu en A) 0,8 X<sub>A</sub> <=  Cu<sub>A</sub>\
+Es en A) 0,3 X<sub>A</sub> <= Es<sub>A</sub>\
+Z en A) 0,5 X<sub>A</sub> => Z<sub>A</sub>\
+Minimo dos metales en A) m <= 0,3 Es<sub>A</sub> + Cu<sub>A</sub> _(m es una constante muy chiquita para obligar a que si o si sea mayor que 0 y la aleacion tenga al menos 2 metales)_\
+Es en B) 0,6 Es<sub>B</sub> => X<sub>B</sub>\
+Es en B) X<sub>B</sub> => 0,4 Es<sub>B</sub>\
+Mg en B) 0,3 X<sub>B</sub> => Mg<sub>B</sub>\
+Z en B) 0,7 X<sub>B</sub> <= Z<sub>B</sub>
 
 
 *Esta mal => se tiene que abrir lo extraido de cada mineral para cada aleacion*
@@ -107,19 +111,18 @@ Z-B) X<sub>B</sub> <= 0,7 E<sub>Z</sub>
 Determinar la cantidad de produccion y compra de tableros para minimizar costos para un determinado tiempo.
 
 ### Variables
-> X<sub>A<sub>Aprob</sub></sub>: Cantidad aprobada de tableros A.\
-X<sub>A<sub>Prod</sub></sub>: Cantidad producida de tableros A.\
-X<sub>A<sub>Compra</sub></sub>: Cantidad comprada de tableros A.\
+> X<sub>A<sub>Prod</sub></sub>: Cantidad producida de tableros A.\
+X<sub>A<sub>Compra</sub></sub>: Cantidad comprada de tableros A.
 
 _Idem demas tableros_
 
 ### Modelo
 - ##### Minimo
->MinA) X<sub>A<sub>Aprob</sub></sub> = 4000\
-MinB) X<sub>B<sub>Aprob</sub></sub> = 3000\
-MinC) X<sub>C<sub>Aprob</sub></sub> = 8000\
-MinD) X<sub>D<sub>Aprob</sub></sub> = 5000
-_Corregir: Seria sumando Producido con Comprados_
+>MinA) X<sub>A<sub>Prod</sub></sub> + X<sub>A<sub>Compra</sub></sub> = 4000\
+MinB) X<sub>B<sub>Prod</sub></sub> + X<sub>B<sub>Compra</sub></sub> = 3000\
+MinC) X<sub>C<sub>Prod</sub></sub> + X<sub>C<sub>Compra</sub></sub> = 8000\
+MinD) X<sub>D<sub>Prod</sub></sub> + X<sub>D<sub>Compra</sub></sub> = 5000
+
 
 - ##### Disponibilidad Hs
 > Fabricacion) 0,34 X<sub>A<sub>Prod</sub></sub> + 0,38 X<sub>B<sub>Prod</sub></sub> + 0,47 X<sub>C<sub>Prod</sub></sub> + 0,50 X<sub>D<sub>Prod</sub></sub><=  6500\
@@ -131,11 +134,6 @@ _Para la recursividad:_
 *1/ (1 - Tasa de Rechazo)*
 
 _Entran 100, con ajuste pasan 90 vuelven 10, la segunda vez, con ajuste pasa 9 vuelve 1, ...._
-
-- ##### Porcentaje Aprob
->Aprobacion) X<sub>A<sub>Aprob</sub></sub> + X<sub>B<sub>Aprob</sub></sub> + X<sub>C<sub>Aprob</sub></sub> + X<sub>D<sub>Aprob</sub></sub> =  0.9(X<sub>A<sub>Prod</sub></sub> + X<sub>B<sub>Prod</sub></sub> + X<sub>C<sub>Prod</sub></sub> + X<sub>D<sub>Prod</sub></sub>) + 0.8(X<sub>A<sub>Compra</sub></sub> + X<sub>B<sub>Compra</sub></sub> + X<sub>C<sub>Compra</sub></sub> + X<sub>D<sub>Compra</sub></sub>)
-
-_Corregir: no es necesario_
 
 - ##### Funcional
 > Funcional) Z<sub>Min</sub> = 50 X<sub>A<sub>Prod</sub></sub> + 80 X<sub>A<sub>Compra</sub></sub> + 60 X<sub>B<sub>Prod</sub></sub> + 75 X<sub>B<sub>Compra</sub></sub> + 120 X<sub>C<sub>Prod</sub></sub> + 180 X<sub>C<sub>Compra</sub></sub> + 100 X<sub>D<sub>Prod</sub></sub> + 80 X<sub>D<sub>Compra</sub></sub>
@@ -155,11 +153,55 @@ _Corregir: no es necesario_
 Determinar la cantidad de atados de flores a comprar y fabricar para maximizar ganancias para un dia.
 
 ### Variables
-> X<sub>A<sub>Aprob</sub></sub>: Cantidad aprobada de tableros A.\
-X<sub>A<sub>Prod</sub></sub>: Cantidad producida de tableros A.\
-X<sub>A<sub>Compra</sub></sub>: Cantidad comprada de tableros A.\
+> A<sub>i</sub>: Cantidad de atados de i a comprar (i= {RTL, RA, RR, C, M}).\
+R<sub>i</sub>: Cantidad de ramos de i a armar (i= {RTL, RA, RR, CH, M, G}).\
+F<sub>i - j</sub>: Flores de tipo i usados en el ramo j (i= {RTL, RA, RR, C, M}), (j= {RRTL, RRA, RRR, RCH, RM, RG}).\
 
 ### Modelo
+- ##### Cantidad de flores (desarmo atados)
+> RTL) 20 A<sub>RTL</sub> => F<sub>RTL - RRTL</sub> + F<sub>RTL - RM</sub> + F<sub>RTL - RG</sub>\
+RA) 20 A<sub>RA</sub> => F<sub>RA - RRA</sub> + F<sub>RA - RM</sub> + F<sub>RA - RG</sub>\
+RR) 20 A<sub>RR</sub> => F<sub>RR - RRR</sub> + F<sub>RR - RM</sub> + F<sub>RR - RG</sub>\
+C) 20 A<sub>C</sub> => F<sub>C - RC</sub> + F<sub>C - RM</sub> + F<sub>C - RG</sub> + F<sub>C - RCH</sub>\
+M) 20 A<sub>M</sub> => F<sub>M - RCH</sub> + F<sub>M - RM</sub> + F<sub>M - RG</sub>
+
+- ##### Armado - Rosas
+> RTL) 1 R<sub>RTL</sub> => F<sub>RTL - RRTL</sub>\
+RA) 9 R<sub>RA</sub> => F<sub>RA - RRA</sub>\
+RR) 7 R<sub>RR</sub> => F<sub>RR - RRR</sub>
+
+- ##### Armado - Crisantemos
+> C) 18 R<sub>C</sub> => F<sub>C - RC</sub>
+
+- ##### Armado - Chicos
+> C) 6 R<sub>CH</sub> => F<sub>C - RCH</sub>\
+M) 8 R<sub>CH</sub> => F<sub>M - RCH</sub>
+
+- ##### Armado - Medianos
+> C) 10 R<sub>M</sub> => F<sub>C - RM</sub>\
+M) 10 R<sub>M</sub> => F<sub>M - RM</sub>\
+R) 1 R<sub>M</sub> => F<sub>R - RM</sub>
+
+- ##### Armado - Grandes
+> C) 10 R<sub>G</sub> => F<sub>C - RG</sub>\
+M) 15 R<sub>G</sub> => F<sub>M - RG</sub>\
+R) 5 R<sub>G</sub> => F<sub>R - RG</sub>
+
+- ##### Definicion F<sub>R - RM</sub>, F<sub>R - RG</sub> (Para que cualquier rosa pueda usarse en los ramos medianos y grandes)
+> RG) F<sub>R - RG</sub> = F<sub>RTL - RG</sub> + F<sub>RA - RG</sub> + F<sub>RR - RG</sub>\
+RM) F<sub>R - RM</sub> = F<sub>RTL - RM</sub> + F<sub>RA - RM</sub> + F<sub>RR - RM</sub>
+
+- ##### Demanda
+> R<sub>RTL</sub> < 650\
+R<sub>RA</sub> < 350\
+R<sub>RR</sub> < 250\
+R<sub>CH</sub> < 1100\
+R<sub>M</sub> < 950\
+R<sub>G</sub> < 625\
+R<sub>C</sub> < 650
+
+- ##### Funcional
+> Funcional) Z<sub>Max</sub> = Ganancia de los R<sub>i</sub> - Costos de los A<sub>i</sub>
 
 ## Ejercicio 2.14
 
