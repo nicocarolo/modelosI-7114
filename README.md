@@ -10,3 +10,7 @@
 #### Semana 2
 - [Teorica](semana2/teorica.md)
 - [Practica](semana2/practica.md)
+
+#### Semana 3
+- [Teorica](semana3/teorica.md)
+- ~~Practica~~
