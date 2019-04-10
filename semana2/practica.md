@@ -203,6 +203,35 @@ R<sub>C</sub> < 650
 - ##### Funcional
 > Funcional) Z<sub>Max</sub> = Ganancia de los R<sub>i</sub> - Costos de los A<sub>i</sub>
 
-## Ejercicio 2.14
+## Ejercicio 2.14 (Centros con mezcla a la entrada y metas)
 
 ![alt text](diagramas/ejDos14.png "2.14")
+
+### Hipótesis
+- IMPORTANTE hipotesis sobre donde se aplica el rendimiento/disponibolidad
+- No se rompen las maquinas.
+- Todo lo producido se vende.
+- El rendimiento no varia.
+- No hay desperdicio de tiempo.
+- No hay mezcla a la salida.
+- El centro 2 y 3 funcionan a la par.
+
+### Objetivo
+Determinar cuanta materia prima comprar, cuanto producir de P1 y P2, y cuantas horas trabajo una persona para maximizar la ganancia en una semana.
+
+### Variables
+> A<sub>i</sub>: Cantidad de atados de i a comprar (i= {RTL, RA, RR, C, M}).\
+R<sub>i</sub>: Cantidad de ramos de i a armar (i= {RTL, RA, RR, CH, M, G}).\
+F<sub>i - j</sub>: Flores de tipo i usados en el ramo j (i= {RTL, RA, RR, C, M}), (j= {RRTL, RRA, RRR, RCH, RM, RG}).\
+E<sub>i-j</sub>: Entrada de producto i a centro j.\
+S<sub>i-j</sub>: Salida de centro i a centro j
+
+### Modelo
+- ##### Centro 3
+- ###### Rendimiento
+> Rendimiento) 0,9 (E<sub>B-3</sub> + E<sub>C-3</sub>) = S<sub>3-5</sub>\
+Mezcla Entrada) 0,4 (E<sub>B-3</sub> + E<sub>C-3</sub>) = E<sub>B-3</sub>\
+0,6 (E<sub>B-3</sub> + E<sub>C-3</sub>) = E<sub>C-3</sub> //No es necesaria, la obliga la anterior\
+Capacidad) 1/25 (E<sub>B-3</sub> + E<sub>C-3</sub>) <= 35 //Aplicando el rendimiento a la salida, si fuera a la entrada multiplicaria la suma de E por 0,9 o poniendo S<sub>3-5</sub>
+
+Falta agregar lo de las horas por empleado.
