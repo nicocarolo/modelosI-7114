@@ -88,3 +88,14 @@ Faltan agregar condiciones para que busque caminos conexos, porque puede pasar q
 
 Se le da un orden a cada nodo al que se llega, pudiendo solo el proxima ser posterior.
 > U<sub>i</sub> - U<sub>j</sub> + N ≤ N - 1 // siendo N = # de nodos
+
+#### Variaciones
+Si existen dos recorridos para ir de i a j, se abre Y<sub>ij</sub>
+> Y<sub>ij</sub> = Y<sub>ij Camion</sub> + Y<sub>ij Colectivo</sub>
+
+Si quiero ir primero a G antes que D:
+> U<sub>D</sub> ≤ U<sub>G</sub> + 1
+
+No se puede visitar F si antes no se visito al de la ciudad E o al de la ciudad B: **Se le obliga al modelo a cumplir una y anular la otra**
+> M Y + U<sub>F</sub> ≤ U<sub>E</sub>\
+> M (1-Y) + U<sub>F</sub> ≤ U<sub>B</sub>
