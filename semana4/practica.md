@@ -123,7 +123,67 @@ E<sub>1</sub> <= 79 Y<sub>2</sub> + M Y<sub>1</sub>\
 Y<sub>1</sub> + Y<sub>2</sub> = 1
 
 ## Ejercicio 3.4
-_se debe para la proxima clase_
+### Objetivo
+Determinar el personal a seleccionar según restricciones para minimizar costo de reemplazo en un periodo determinado.
+
+### Hipotesis
+- Todas las personas estan disponibles para sumarse al proyecto.
+- Ninguna persona cambia su caracter.
+- No se generan nuevos conflictos.
+- El protegido solo puede estar en el grupo si esta en el mentor.
+
+### Variables
+> Y<sub>i</sub>: Si se toma a la persona i para el proyecto {i: 1..12}.\
+> P<sub>c</sub>: Cantidad de contadores en el equipo.\
+> P<sub>q</sub>: Cantidad de quimicos en el equipo.\
+> P<sub>i</sub>: Cantidad de ingenieros en el equipo.\
+> A: Si hay partidarios del trabajo en grupo en el equipo.\
+> PTG: Si hay autoritarios en el equipo.\
+> B: Si hay 2 benevolentes o mas en el equipo.\
+> Y<sub>vs</sub>: Si vidal y smith estan en el equipo.
+
+### Modelo
+> Tamaño Grupo) Sumatoria(Y<sub>i</sub>) = 6\
+
+#### Antagonicas
+> Y<sub>2</sub> + Y<sub>11</sub> ≤ 1\
+> Y<sub>3</sub> + Y<sub>4</sub> ≤ 1
+
+#### Vidal y Smith
+> 2 Y<sub>vs</sub> ≤ Y<sub>7</sub> + Y<sub>11</sub> ≤ 1 + Y<sub>vs</sub>
+
+#### Limite contadores
+> P<sub>c</sub> ≤ 3 + Y<sub>vs</sub>
+
+#### Protegido y mentor
+> Y<sub>4</sub> ≥ Y<sub>6</sub>
+
+#### Caracteres antagonicos
+> A + PTG ≤ 1</sub>
+
+#### Contadores
+> Y<sub>1</sub> + Y<sub>4</sub> + Y<sub>5</sub> + Y<sub>8</sub>+ Y<sub>11</sub> = P<sub>c</sub>
+
+#### Quimicos
+> Y<sub>2</sub> + Y<sub>7</sub> = P<sub>q</sub>
+
+#### Profesiones minimas
+> P<sub>q</sub> ≥ 1\
+> P<sub>i</sub> ≥ 1\
+> P<sub>c</sub> ≥ 2\
+
+#### Autoritarios
+> A ≤ Y<sub>1</sub> + Y<sub>5</sub> + Y<sub>7</sub> ≤ 3 A
+
+#### Hay PTG
+> PTG ≤ Y<sub>2</sub> + Y<sub>6</sub> ≤ 2 PTG
+
+#### 2 o mas benevolentes
+> 2 B ≤ Y<sub>4</sub> + Y<sub>8</sub> + Y<sub>11</sub> + Y<sub>12</sub> ≤ 3 B + 1
+
+### Funcional
+> Z<sub>min</sub> = Sumatoria(Costo - Reemplazo Y<sub>i</sub>) - 100 B\
+> _Costo y Reemplazo son constantes_
 
 ## OBSERVACIONES PARA LA GUIA:
 -   4.8 tiene punto degenerado.
